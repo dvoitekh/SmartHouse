@@ -13,3 +13,18 @@
  *= require_tree .
  *= require_self
  */
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+
+ a {
+  color: #000;
+  text-decoration: none !important;
+
+  &:visited {
+    color: #666;
+  }
+
+  &:hover {
+    background-color: transparent;
+  }
+}
