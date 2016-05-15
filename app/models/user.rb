@@ -3,6 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :registerable
 
+  has_many :devices
+
   ROLES = %w(client admin)
 
   validates :name, :email, :password, :password_confirmation, presence: true
