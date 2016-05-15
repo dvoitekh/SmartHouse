@@ -1,0 +1,15 @@
+<h2>Sign up</h2>
+
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {:"data-parsley-validate" => ''}) do |f| %>
+  <%= f.error_notification %>
+  <div class= "block1">
+    <%= f.input :name, input_html: { :"data-parsley-group" => "block1"}, autofocus: true, label: false, placeholder: 'Name' %>
+    <%= f.input :email, input_html: { :"data-parsley-group" => "block1", :"data-parsley-group" => "block1"}, autofocus: true, label: false, placeholder: 'Email' %>
+    <%= f.input :password, input_html: { id: "password_id", :"data-parsley-length" => "[8,40]", :"data-parsley-group" => "block1" }, label: false, placeholder: 'Password' %>
+    <%= f.input :password_confirmation, input_html: { :"data-parsley-equalto" => "#password_id", :"data-parsley-group" => "block1", :"data-parsley-length" => "[8,40]" }, label: false, placeholder: 'Confirm password' %>
+    <%= f.input :agree, as: :boolean, label: "Agree with terms of use", input_html: { :"data-parsley-group" => "block1", :"data-parsley-required" => "true", checked: "false" } %>
+    <div class="form-actions">
+      <%= f.submit "Submit" %>
+    </div>
+  </div>
+<% end %>

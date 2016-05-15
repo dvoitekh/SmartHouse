@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'registrations', sessions: 'sessions' }
 
   root 'site#index'
-  resources :users
-  authenticated :user do
-     root to: 'admin/dashboard#index'
-     ActiveAdmin.routes(self)
+  resources :users, only: [:show, :edit, :update]
+
+  authenticated :user, ->(u) { u.is_admin? } do
+      root to: 'admin/dashboard#index'
+      ActiveAdmin.routes(self)
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

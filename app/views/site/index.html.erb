@@ -1,1 +1,10 @@
-Hello
+<% if user_signed_in? %>
+  <h1><%= "Hello, #{current_user.name}" %></h1>
+  <% if current_user.is_admin? %>
+    <h3><%= link_to "Admin Dashboard", admin_dashboard_path %></h3>
+  <% else %>
+    <%= render 'partials/user_page' %>
+  <% end %>
+<% else %>
+  <h1> Please, sign in to track your devices <h1>
+<% end %>

@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 
 gem 'devise'
+gem 'simple_form'
+gem 'jquery-rails'
+gem 'parsley-rails'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'activeadmin', github: 'activeadmin'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
