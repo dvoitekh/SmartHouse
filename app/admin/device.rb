@@ -1,5 +1,5 @@
 ActiveAdmin.register Device do
-   permit_params :user_id, :bt_mac_address, :category, :name, :power, :validity, :active
+   permit_params :user_id, :bt_mac_address, :name, :power, :validity, :active, :category_id
 
    index do
      selectable_column
@@ -32,7 +32,7 @@ ActiveAdmin.register Device do
    form do |f|
      f.inputs 'Device Details' do
        f.input :bt_mac_address
-       f.input :category
+       f.input :category, as: :select2, collection: Category.all.map { |u| [u.name, u.id] }
        f.input :name
        f.input :power
        f.input :validity, as: :select

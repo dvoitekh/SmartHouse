@@ -15,7 +15,9 @@
   <strong> BT MAC name: </strong>
   <%= device.bt_mac_address %>
   <strong> Device category: </strong>
-  <%= device.category %>
+  <% device.categories.each do |category|%>
+    <%= category %>
+  <% end %>
   <strong> Device name: </strong>
   <%= device.name %>
   <strong> Device power: </strong>
