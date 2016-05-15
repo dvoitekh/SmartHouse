@@ -3,7 +3,7 @@
   <% if current_user.is_admin? %>
     <h3><%= link_to "Admin Dashboard", admin_dashboard_path %></h3>
   <% else %>
-    <%= render 'partials/user_page' %>
+    <h3><%= link_to 'Your profile', current_user %></h3>
   <% end %>
 <% else %>
   <h1> Please, sign in to track your devices <h1>

@@ -1,0 +1,11 @@
+<%= simple_form_for([@user, @device]) do |f| %>
+  <%= f.input :bt_mac_address, required: true, autofocus: true, label: false, placeholder: 'BT MAC Address' %>
+  <%= f.input :category, required: true, autofocus: true, label: false, placeholder: 'Category' %>
+  <%= f.input :name, required: true, autofocus: true, label: false, placeholder: 'Name' %>
+  <%= f.input :power, required: true, autofocus: true, label: false, placeholder: 'Power' %>
+  <%= f.input :validity, autofocus: true %>
+  <%= f.input :active, autofocus: true %>
+  <div class="form-actions">
+    <%= f.submit %>
+  </div>
+<% end %>

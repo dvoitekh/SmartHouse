@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<h3> Devices </h3>
+<% @user.devices.each do |device| %>
+  <strong> BT MAC name: </strong>
+  <%= device.bt_mac_address %>
+  <strong> Device category: </strong>
+  <%= device.category %>
+  <strong> Device name: </strong>
+  <%= device.name %>
+  <strong> Device power: </strong>
+  <%= device.power %>
+  <strong> Device validity: </strong>
+  <%= device.validity %>
+  <strong> Device active: </strong>
+  <%= device.active %>
+  <br>
+  <%= link_to "Edit", edit_user_device_path(device.user, device) %>
+  <%= link_to "Delete", [device.user, device], method: :delete %>
+<% end %>
+<br>
+<%= simple_form_for [@user, @user.devices.build] do |f| %>
+  <%= f.input :bt_mac_address, required: true, autofocus: true, label: false, placeholder: 'BT MAC Address' %>
+  <%= f.input :category, required: true, autofocus: true, label: false, placeholder: 'Category' %>
+  <%= f.input :name, required: true, autofocus: true, label: false, placeholder: 'Name' %>
+  <%= f.input :power, required: true, autofocus: true, label: false, placeholder: 'Power' %>
+  <%= f.input :validity, autofocus: true %>
+  <%= f.input :active, autofocus: true %>
+  <div class="form-actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<br>
+<%= link_to "Edit user", edit_user_path %>

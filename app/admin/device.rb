@@ -1,5 +1,5 @@
 ActiveAdmin.register Device do
-   permit_params :user_id, :bt_mac_address, :category, :name, :power, :validity
+   permit_params :user_id, :bt_mac_address, :category, :name, :power, :validity, :active
 
    index do
      selectable_column
@@ -15,6 +15,7 @@ ActiveAdmin.register Device do
      column :name
      column :power
      column :validity
+     column :active
      column :created_at
      actions
    end
@@ -25,6 +26,7 @@ ActiveAdmin.register Device do
    filter :name
    filter :power
    filter :validity
+   filter :active
    filter :created_at
 
    form do |f|
@@ -34,6 +36,7 @@ ActiveAdmin.register Device do
        f.input :name
        f.input :power
        f.input :validity, as: :select
+       f.input :active, as: :select
        f.input :user, as: :select2, collection: User.all.map { |u| ["#{u.name} (#{u.email})", u.id] }
      end
      f.actions
