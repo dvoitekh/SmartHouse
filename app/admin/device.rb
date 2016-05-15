@@ -7,16 +7,16 @@ ActiveAdmin.register Device do
      column 'User name' do |d|
         User.find(d.user_id).name
      end
-     column 'User email' do |d|
-        User.find(d.user_id).email
-     end
+     #column 'User email' do |d|
+     #   User.find(d.user_id).email
+     #end
      column :bt_mac_address
      column :category
      column :name
      column :power
      column :validity
      column :active
-     column :created_at
+     #column :created_at
      actions
    end
 
