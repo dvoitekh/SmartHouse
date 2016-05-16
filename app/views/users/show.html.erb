@@ -11,29 +11,61 @@
 </p>
 
 <h3> Devices </h3>
+<table>
+  <tr>
+  <td>
+    <strong>Device MAC Address</strong>
+  </td>
+  <td>
+    <strong>Device category</strong>
+  </td>
+  <td>
+    <strong>Device name</strong>
+  </td>
+  <td>
+    <strong>Device power</strong>
+  </td>
+  <td>
+    <strong>Device validity</strong>
+  </td>
+  <td>
+    <strong>Device active</strong>
+  </td>
+  </tr>
 <% @user.devices.each do |device| %>
-  <strong> BT MAC name: </strong>
-  <%= device.bt_mac_address %>
-  <strong> Device category: </strong>
-  <% device.categories.each do |category|%>
-    <%= category %>
-  <% end %>
-  <strong> Device name: </strong>
-  <%= device.name %>
-  <strong> Device power: </strong>
-  <%= device.power %>
-  <strong> Device validity: </strong>
-  <%= device.validity %>
-  <strong> Device active: </strong>
-  <%= device.active %>
-  <br>
-  <%= link_to "Edit", edit_user_device_path(device.user, device) %>
-  <%= link_to "Delete", [device.user, device], method: :delete %>
+  <tr>
+  <td>
+    <%= device.bt_mac_address %>
+  </td>
+  <td>
+    <%= device.category.name %>
+  </td>
+  <td>
+    <%= device.name %>
+  </td>
+  <td>
+    <%= device.power %>
+  </td>
+  <td>
+    <%= device.validity %>
+  </td>
+  <td>
+    <%= device.active %>
+  </td>
+  <td>
+    <%= link_to "Edit", edit_user_device_path(device.user, device) %>
+  </td>
+  <td>
+    <%= link_to "Delete", [device.user, device], method: :delete %>
+  </td>
+  </tr>
 <% end %>
+</table>
 <br>
+<h3> Add new device </h3>
 <%= simple_form_for [@user, @user.devices.build] do |f| %>
   <%= f.input :bt_mac_address, required: true, autofocus: true, label: false, placeholder: 'BT MAC Address' %>
-  <%= f.input :category, required: true, autofocus: true, label: false, placeholder: 'Category' %>
+  <%= f.input :category_id, as: :select, label: false, collection: Category.all.map { |u| [u.name, u.id] } %>
   <%= f.input :name, required: true, autofocus: true, label: false, placeholder: 'Name' %>
   <%= f.input :power, required: true, autofocus: true, label: false, placeholder: 'Power' %>
   <%= f.input :validity, autofocus: true %>

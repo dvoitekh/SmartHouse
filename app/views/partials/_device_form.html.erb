@@ -1,6 +1,6 @@
 <%= simple_form_for([@user, @device]) do |f| %>
   <%= f.input :bt_mac_address, required: true, autofocus: true, label: false, placeholder: 'BT MAC Address' %>
-  <%= f.input :category, required: true, autofocus: true, label: false, placeholder: 'Category' %>
+  <%= f.input :category_id, as: :select, label: false, collection: Category.all.map { |u| [u.name, u.id] } %>
   <%= f.input :name, required: true, autofocus: true, label: false, placeholder: 'Name' %>
   <%= f.input :power, required: true, autofocus: true, label: false, placeholder: 'Power' %>
   <%= f.input :validity, autofocus: true %>

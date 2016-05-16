@@ -6,6 +6,6 @@ class AddCategories < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_column :devices, :category_id, :integer
+    rename_column :devices, :category, :category_id
   end
 end
