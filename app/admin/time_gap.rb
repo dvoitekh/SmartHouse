@@ -4,8 +4,12 @@ ActiveAdmin.register TimeGap do
    index do
      selectable_column
      id_column
-     column :start
-     column :end
+     column 'start' do |u|
+      "#{u.start.strftime('%H:%M')}"
+     end
+     column 'end' do |u|
+      "#{u.end.strftime('%H:%M')}"
+     end
      actions
    end
 
