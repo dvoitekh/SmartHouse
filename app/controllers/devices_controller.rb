@@ -49,5 +49,4 @@ class DevicesController < ApplicationController
   def device_params
     params.require(:device).permit(:user_id, :bt_mac_address, :category_id, :name, :power, :validity, :active)
   end
-
 end

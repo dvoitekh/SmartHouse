@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
-#auth
+# auth
 gem 'devise'
 gem 'cancan'
-#frontend
+# frontend
 gem 'select2-rails'
 gem 'simple_form'
 gem 'parsley-rails'
 gem 'bootstrap-sass'
-#admin
+# admin
 gem 'activeadmin', github: 'activeadmin'
 gem 'activeadmin-select2', github: 'mfairburn/activeadmin-select2'
 

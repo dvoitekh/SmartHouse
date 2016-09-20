@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
   has_many :devices
 
-  ROLES = %w(client admin)
+  ROLES = %w(client admin).freeze
 
   validates :name, :email, :password, :password_confirmation, presence: true
 
