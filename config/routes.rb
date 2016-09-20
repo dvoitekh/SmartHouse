@@ -10,6 +10,10 @@ Rails.application.routes.draw do
       resources :devices
     end
 
+    authenticated :user, ->(u) { u.is_client? } do
+      root 'users#show'
+    end
+
     authenticated :user, ->(u) { u.is_admin? } do
       root to: 'admin/dashboard#index'
       ActiveAdmin.routes(self)
