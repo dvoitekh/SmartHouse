@@ -1,10 +1,14 @@
 <strong> BT MAC name: </strong>
 <%= @device.bt_mac_address %>
+<br>
 <strong> Device category: </strong>
-<%= @device.category %>
+<%= @device.category.name %>
+<br>
 <strong> Device name: </strong>
 <%= @device.name %>
+<br>
 <strong> Device power: </strong>
 <%= @device.power %>
+<br>
 <strong> Device validity: </strong>
 <%= @device.validity %>

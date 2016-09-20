@@ -1,12 +1,7 @@
 class DevicesController < ApplicationController
   before_action :set_device, only: [:show, :edit, :update, :destroy]
 
-  def index
-    @devices = Device.all
-  end
-
   def show
-    @device = Device.find(params[:id])
   end
 
   def new
@@ -14,30 +9,22 @@ class DevicesController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:user_id])
-    @device = Device.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:user_id])
-    @device = Device.find(params[:id])
     @device.update_attributes(device_params)
-    redirect_to @user
+    redirect_to current_user
   end
 
   def create
-    @user = User.find(params[:user_id])
-    @device = @user.devices.build(device_params)
-    @device.user_id = current_user.id
+    @device = current_user.devices.build(device_params)
     @device.save
-    redirect_to @user
+    redirect_to current_user
   end
 
   def destroy
-    @user = User.find params[:user_id]
-    @device = @user.devices.find params[:id]
     @device.destroy
-    redirect_to @user
+    redirect_to current_user
   end
 
   private

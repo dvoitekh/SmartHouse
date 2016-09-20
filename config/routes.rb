@@ -6,9 +6,8 @@ Rails.application.routes.draw do
   end
 
   authenticated :user do
-    resources :users, only: [:show, :edit, :update] do
-      resources :devices
-    end
+    resources :users, only: [:show, :edit, :update]
+    resources :devices
 
     authenticated :user, ->(u) { u.is_client? } do
       root 'users#show'

@@ -34,36 +34,37 @@
   </tr>
 <% @user.devices.each do |device| %>
   <tr>
-  <td>
-    <%= device.bt_mac_address %>
-  </td>
-  <td>
-    <%= device.category.name %>
-  </td>
-  <td>
-    <%= device.name %>
-  </td>
-  <td>
-    <%= device.power %>
-  </td>
-  <td>
-    <%= device.validity %>
-  </td>
-  <td>
-    <%= device.active %>
-  </td>
-  <td>
-    <%= link_to "Edit", edit_user_device_path(device.user, device) %>
-  </td>
-  <td>
-    <%= link_to "Delete", [device.user, device], method: :delete %>
-  </td>
+    <td>
+      <%= link_to "#{device.bt_mac_address}", device %>
+    </td>
+    <td>
+      <%= device.category.name %>
+    </td>
+    <td>
+      <%= device.name %>
+    </td>
+    <td>
+      <%= device.power %>
+    </td>
+    <td>
+      <%= device.validity %>
+    </td>
+    <td>
+      <%= device.active %>
+    </td>
+    <td>
+      <%= link_to "Edit", edit_device_path(device.id) %>
+    </td>
+    <td>
+      <%= link_to "Delete", device, method: :delete %>
+    </td>
   </tr>
 <% end %>
 </table>
 <br>
 <h3> Add new device </h3>
-<%= simple_form_for [@user, @user.devices.build] do |f| %>
+<%= simple_form_for Device.new do |f| %>
+  <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
   <%= f.input :bt_mac_address, required: true, autofocus: true, label: false, placeholder: 'BT MAC Address' %>
   <%= f.input :category_id, as: :select, label: false, collection: Category.all.map { |u| [u.name, u.id] } %>
   <%= f.input :name, required: true, autofocus: true, label: false, placeholder: 'Name' %>
