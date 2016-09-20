@@ -1,6 +1,23 @@
 class DevicesController < ApplicationController
   before_action :set_device, only: [:show, :edit, :update, :destroy]
 
+  def new
+    @device = Device.new
+  end
+
+  def create
+    @device = current_user.devices.build(device_params)
+    respond_to do |format|
+      if @device.save
+        format.html { redirect_to current_user }
+        format.json { head :ok }
+      else
+        format.html { redirect_to current_user }
+        format.json { render json: @device.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def show
     respond_to do |f|
       f.html
@@ -8,55 +25,27 @@ class DevicesController < ApplicationController
     end
   end
 
-  def new
-    @device = Device.new
-  end
-
   def edit
-    respond_to do |f|
-      f.html
-      f.json { render json: @device }
-    end
   end
 
   def update
     respond_to do |format|
       if @device.update(device_params)
-        format.html
+        format.html { redirect_to current_user }
         format.json { head :ok }
       else
-        format.html
+        format.html { redirect_to current_user }
         format.json { render json: @device.errors, status: :unprocessable_entity }
       end
     end
-    redirect_to current_user
-  end
-
-  def create
-    @device = current_user.devices.build(device_params)
-    respond_to do |format|
-      if @device.save
-        format.html
-        format.json { head :ok }
-      else
-        format.html
-        format.json { render json: @device.errors, status: :unprocessable_entity }
-      end
-    end
-    redirect_to current_user
   end
 
   def destroy
+    @device.destroy
     respond_to do |format|
-      if @device.destroy
-        format.html
-        format.json { head :ok }
-      else
-        format.html
-        format.json { render json: @device.errors, status: :unprocessable_entity }
-      end
+      format.html { redirect_to current_user }
+      format.json { head :ok }
     end
-    redirect_to current_user
   end
 
   private
