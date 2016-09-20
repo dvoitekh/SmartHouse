@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   end
 
   authenticated :user do
+    root 'users#show'
     resources :users, only: [:show, :edit, :update] do
       resources :devices
     end
