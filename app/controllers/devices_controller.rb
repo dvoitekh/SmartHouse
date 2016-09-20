@@ -2,6 +2,10 @@ class DevicesController < ApplicationController
   before_action :set_device, only: [:show, :edit, :update, :destroy]
 
   def show
+    respond_to do |f|
+      f.html
+      f.json { render json: @device }
+    end
   end
 
   def new
@@ -9,21 +13,49 @@ class DevicesController < ApplicationController
   end
 
   def edit
+    respond_to do |f|
+      f.html
+      f.json { render json: @device }
+    end
   end
 
   def update
-    @device.update_attributes(device_params)
+    respond_to do |format|
+      if @device.update(device_params)
+        format.html
+        format.json { head :ok }
+      else
+        format.html
+        format.json { render json: @device.errors, status: :unprocessable_entity }
+      end
+    end
     redirect_to current_user
   end
 
   def create
     @device = current_user.devices.build(device_params)
-    @device.save
+    respond_to do |format|
+      if @device.save
+        format.html
+        format.json { head :ok }
+      else
+        format.html
+        format.json { render json: @device.errors, status: :unprocessable_entity }
+      end
+    end
     redirect_to current_user
   end
 
   def destroy
-    @device.destroy
+    respond_to do |format|
+      if @device.destroy
+        format.html
+        format.json { head :ok }
+      else
+        format.html
+        format.json { render json: @device.errors, status: :unprocessable_entity }
+      end
+    end
     redirect_to current_user
   end
 

@@ -2,9 +2,17 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def show
+    respond_to do |f|
+      f.html
+      f.json { render json: @user.to_json(include: :devices) }
+    end
   end
 
   def edit
+    respond_to do |f|
+      f.html
+      f.json { render json: @user.to_json(include: :devices) }
+    end
   end
 
   def update
